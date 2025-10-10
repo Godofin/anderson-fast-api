@@ -1,5 +1,5 @@
 from pydantic import BaseModel
-from typing import Optional
+from typing import Optional, List 
 
 # Modelo base com os campos comuns a todas as operações
 class EventBase(BaseModel):
@@ -10,6 +10,7 @@ class EventBase(BaseModel):
     description: str
     buttonText: str
     eventName: str
+    cities: List[str] = [] 
     active_event: bool = True
 
 # Modelo para a criação de um evento (não precisa de id)
@@ -25,13 +26,12 @@ class EventUpdate(BaseModel):
     description: Optional[str] = None
     buttonText: Optional[str] = None
     eventName: Optional[str] = None
+    cities: Optional[List[str]] = None
     active_event: Optional[bool] = None
 
 # Modelo completo do evento, para respostas da API (com id)
-# AQUI ESTAVA O ERRO: id era `str`, agora é `int`
 class Event(EventBase):
     id: int
 
     class Config:
-        orm_mode = True # No Pydantic v2, use `from_attributes = True`
-
+        from_attributes = True 
