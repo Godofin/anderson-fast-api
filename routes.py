@@ -3,8 +3,8 @@ from typing import List
 
 # Alterado de importações absolutas para importações relativas.
 # Isso resolve o "ModuleNotFoundError" quando o projeto é executado como um pacote.
-from .supabase_client import supabase
-from .schemas import Event, EventCreate, EventUpdate, Rating, RatingCreate
+from supabase_client import supabase
+from schemas import Event, EventCreate, EventUpdate, Rating, RatingCreate
 
 router = APIRouter()
 TABLE_EVENT = "events" # Renomeado para maior clareza
